@@ -1,0 +1,57 @@
+name: Publish
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  pypi-publish:
+    name: upload release to PyPI
+    runs-on: ubuntu-latest
+    environment: release
+    permissions:
+      # IMPORTANT: this permission is mandatory for trusted publishing
+      id-token: write
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install Hatch
+        uses: pypa/hatch@257e27e51a6a5616ed08a39a408a21c35c9931bc
+
+      - name: Build package
+        run: hatch build
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  docs-publish:
+    name: publish documentation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version-file: pyproject.toml
+
+      - name: Install Hatch
+        uses: pypa/hatch@257e27e51a6a5616ed08a39a408a21c35c9931bc
+
+      - name: Build documentation
+        run: hatch run docs:deploy

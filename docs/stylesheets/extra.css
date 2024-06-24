@@ -1,0 +1,61 @@
+:root {
+  --md-primary-fg-color: #f1c36f;
+  --md-primary-fg-color--light: #ecb7b7;
+  --md-primary-fg-color--dark: #90030c;
+  --md-accent-fg-color: #f1c36f;
+  --md-accent-fg-color--light: #ecb7b7;
+  --md-accent-fg-color--dark: #90030c;
+}
+
+.md-header {
+  background-color: var(--md-primary-fg-color);
+  color: black;
+}
+.md-search__input + .md-search__icon {
+  color: black;
+}
+.md-search__input::placeholder {
+  color: black;
+}
+.md-nav__link[for]:focus,
+.md-nav__link[for]:hover,
+.md-nav__link[href]:focus,
+.md-nav__link[href]:hover {
+  text-decoration: underline;
+}
+
+.md-typeset a:focus,
+.md-typeset a:hover {
+  text-decoration: underline;
+}
+
+header {
+  border-bottom: 4px solid black;
+}
+
+.md-copyright {
+  width: 100%;
+}
+
+.md-copyright .made-with-love {
+  float: right;
+  line-height: 24px;
+}
+
+.md-copyright .made-with-love .footer_mirumee_logo {
+  height: 24px;
+  vertical-align: top;
+  opacity: 0.7;
+}
+
+.md-copyright .made-with-love:hover .footer_mirumee_logo {
+  opacity: 1;
+}
+
+tr.benchmarks-best-result {
+  background-color: var(--md-typeset-ins-color);
+}
+
+tr.benchmarks-worst-result {
+  background-color: var(--md-typeset-del-color);
+}

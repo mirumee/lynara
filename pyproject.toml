@@ -1,0 +1,129 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "lynara"
+version = "0.2.0"
+description = ''
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+keywords = []
+authors = [{ name = "Paweł Kucmus", email = "pkucmus@gmail.com" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["ipdb"]
+types = [
+    "mypy>=1.0.0",
+    "pytest",
+    "django",
+    "fastapi",
+    "django-stubs[compatible-mypy]",
+    "pytest-asyncio",
+]
+docs = ["mkdocs-material", "mkdocs-charts-plugin"]
+
+[project.urls]
+Documentation = "https://mirumee.github.io/lynara/"
+Issues = "https://github.com/mirumee/lynara/issues"
+Source = "https://github.com/mirumee/lynara"
+
+[tool.hatch.envs.default]
+features = ["dev", "types", "docs"]
+
+[tool.hatch.envs.default.scripts]
+check = ["hatch fmt", "hatch test -a", "hatch test --cover", "hatch run types:check"]
+cov-html = ["hatch test --cover -- --cov-report=html"]
+
+[tool.hatch.envs.hatch-static-analysis]
+config-path = "ruff.toml"
+
+[tool.hatch.envs.hatch-test]
+dependencies = [
+    "asynctest",
+    "ipdb",
+    "pytest-asyncio",
+    "pytest-memray",
+    "pytest-print",
+    "pytest-cov",
+    "django",
+    "fastapi",
+]
+
+[[tool.hatch.envs.hatch-test.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.hatch.envs.types.scripts]
+check = "mypy --install-types --non-interactive {args:src/lynara tests}"
+
+[tool.hatch.envs.docs.scripts]
+build = "mkdocs build --clean --strict"
+serve = "mkdocs serve --dev-addr localhost:8000"
+deploy = "mkdocs gh-deploy --force"
+
+[tool.hatch.envs.coverage]
+detached = true
+dependencies = [
+  "coverage[toml]>=6.2",
+]
+[tool.hatch.envs.coverage.scripts]
+combine = "coverage combine {args}"
+html = "coverage html --skip-covered --skip-empty"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/lynara"]
+
+[tool.coverage.run]
+source_pkgs = ["lynara"]
+branch = true
+parallel = true
+
+[tool.coverage.paths]
+lynara = ["src/lynara"]
+tests = ["tests"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "no cov",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstract",
+]
+fail_under = 90
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 80
+
+[tool.ruff.lint]
+select = ["E", "F", "G", "I", "N", "Q", "UP", "C90", "T20", "TID"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+known-first-party = ["lynara"]
+
+[tool.ruff.lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
