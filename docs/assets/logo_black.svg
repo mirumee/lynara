@@ -1,5 +1,5 @@
-<p><svg width="995" height="300" viewBox="0 0 995 300" fill="none"
-    xmlns="http://www.w3.org/2000/svg" class="main-logo">
+<svg width="995" height="300" viewBox="0 0 995 300" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M146.35 22.5267C163.732 12.4911 185.148 12.4911 202.53 22.5267L270.79 61.9367C288.172 71.9723 298.88 90.5188 298.88 110.59V189.41C298.88 209.481 288.172 228.028 270.79 238.063L202.53 277.473C185.148 287.509 163.732 287.509 146.35 277.473L78.09 238.063C60.7078 228.028 50 209.481 50 189.41V110.59C50 90.5188 60.7078 71.9723 78.09 61.9367L146.35 22.5267ZM120.421 68.9707H133.926C156.301 68.9707 174.44 87.1096 174.44 109.485V136.552C174.472 158.901 192.598 177.008 214.954 177.008L228.459 177.011V231.03H214.954C192.579 231.03 174.44 212.891 174.44 190.516V177.011L174.468 177.008H120.421V68.9707Z" fill="black"/>
     <path d="M425.181 81V188.856C425.181 191.938 425.823 194.185 427.107 195.597C428.391 196.881 430.766 197.523 434.233 197.523H447.137V219.672H425.951C416.193 219.672 408.553 217.746 403.032 213.894C397.639 210.042 394.943 202.723 394.943 191.938V81H425.181Z" fill="black"/>
     <path d="M628.019 162.277C628.019 149.566 622.498 143.21 611.455 143.21C605.934 143.21 601.312 145.136 597.588 148.988C593.864 152.711 592.003 158.168 592.003 165.359V219.672H561.764V119.52H591.232V133.002C594.956 128.123 599.45 124.271 604.714 121.446C609.979 118.621 615.949 117.209 622.626 117.209C633.668 117.209 642.335 120.74 648.627 127.802C655.047 134.735 658.257 145.007 658.257 158.618V219.672H628.019V162.277Z" fill="black"/>
@@ -8,58 +8,3 @@
     <path d="M776.36 119.52H805.828V137.817C811.477 124.849 821.107 118.364 834.718 118.364H842.999V145.906H833.369C824.51 145.906 817.833 148.153 813.339 152.647C808.845 157.013 806.598 164.46 806.598 174.989V219.672H776.36V119.52Z" fill="black"/>
     <path d="M470.013 234.31H453.449V258.192H478.487C488.888 258.192 496.977 255.56 502.755 250.295C508.533 245.031 513.284 237.263 517.007 226.991L555.913 119.52H523.363L502.37 192.708L480.799 119.52H448.249L485.999 221.598L485.806 221.983C484.265 226.991 482.468 230.265 480.413 231.806C478.487 233.475 475.021 234.31 470.013 234.31Z" fill="black"/>
 </svg>
-</p>
-
-# Introduction
-
-Lynara is a tool that allows running Python ASGI applications in an AWS Lambda runtime.
-
-When writing Lynara, we closely followed what [Uvicorn](https://www.uvicorn.org/) does to fulfill its role as an ASGI server. However, instead of running in a long-lived loop serving many requests, Lynara receives an AWS event, passes it to the application, and stops.
-
-## Quickstart
-
-Install Lynara:
-
-=== "Poetry"
-
-    ```
-    poetry add lynara
-    ```
-
-=== "pip"
-
-    ```
-    pip install lynara
-    ```
-
-Use Lynara with your ASGI application:
-
-```python title="app.py" linenums="1"
-import asyncio
-from lynara import Lynara, APIGatewayProxyEventV2Interface
-from fastapi import FastAPI
-
-app = FastAPI()# (1)!
-lynara = Lynara(app=app)
-
-def lambda_handler(event, context):
-    return asyncio.run(
-        lynara.run(event, context, APIGatewayProxyEventV2Interface)
-    )
-```
-
-1. The `app` is loaded once for every cold start.
-
-## Rationale
-
-We wanted to quickly deploy small and scalable Python applications on Lambdas. Our goal was to support small [FastAPI](https://fastapi.tiangolo.com/) applications with a few endpoints, but not as small as a single lambda handler. Leveraging [Starlette](https://www.starlette.io/) or [FastAPI](https://fastapi.tiangolo.com/) in a serverless runtime was an appealing idea. Although there are existing solutions like [Mangum](https://github.com/jordaneremieff/mangum) and [aws-lambda-web-adapter](https://github.com/awslabs/aws-lambda-web-adapter), they did not meet our needs.
-
-Another aspect is being able to jump off a serverless environment as Lambdas are cheaper than Fargates and EC2s only up to a certain point. Here's a neat [AWS Cost Estimator](https://www.aws-geek.com/?config=eyJsYW1iZGFQYXJhbXMiOnsiYXZnUmVzcG9uc2VUaW1lSW5NcyI6MTAwLCJyZXF1ZXN0cyI6MjAwMCwiaW50ZXJ2YWwiOiJtaW51dGUiLCJsYW1iZGFTaXplIjoxMjgsImZyZWVUaWVyIjpmYWxzZX0sImZhcmdhdGVQYXJhbXMiOnsiZmFyZ2F0ZUNvbmZpZyI6eyJ2Q1BVIjoyLCJtZW1vcnkiOjR9LCJudW1iZXJPZlRhc2tzIjoyLCJhcHBSdW5uZXJDb25maWciOnsiZW5hYmxlZCI6dHJ1ZSwicnBtUGVyVGFzayI6NjAwMH19LCJlYzJQYXJhbXMiOnsiaW5zdGFuY2VUeXBlIjoidDMubWVkaXVtIiwibnVtYmVyT2ZJbnN0YW5jZXMiOjJ9LCJldmVudHNQYXJhbXMiOnsiaW50ZXJ2YWwiOiJob3VyIiwiZXZlbnRzIjo1MDAwMDAwLCJjb25zdW1lcnMiOjEsImF2Z1BheWxvYWRTaXplIjo1MDAwLCJzaGFyZHMiOjd9fQ==) that might help you understand the costs.
-
-What started as an evening experiment has resulted in a functional tool. Please star it on GitHub, share feedback, and follow the project if you're interested.
-
-## Others from Mirumee
-
-- [Smyth](https://github.com/mirumee/smyth) - A tool improving the Lambda developer experience
-- [Ariadne](https://ariadnegraphql.org/) - Schema-first, Python GraphQL server
-- [Ariadne Codegen](https://github.com/mirumee/ariadne-codegen) - GraphQL Python code generator

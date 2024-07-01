@@ -42,13 +42,14 @@ header {
   line-height: 24px;
 }
 
-.md-copyright .made-with-love .footer_mirumee_logo {
+.md-copyright .made-with-love a img {
   height: 24px;
   vertical-align: top;
   opacity: 0.7;
+  transition: all 0.3s ease-in-out;
 }
 
-.md-copyright .made-with-love:hover .footer_mirumee_logo {
+.md-copyright .made-with-love a:hover img {
   opacity: 1;
 }
 
@@ -58,4 +59,25 @@ tr.benchmarks-best-result {
 
 tr.benchmarks-worst-result {
   background-color: var(--md-typeset-del-color);
+}
+
+@keyframes heart {
+  0%,
+  40%,
+  80%,
+  100% {
+    transform: scale(1);
+  }
+  20%,
+  60% {
+    transform: scale(1.15);
+  }
+}
+.heart {
+  animation: heart 1000ms infinite;
+  color: #90030c;
+}
+
+.main-logo path {
+  fill: var(--md-primary-fg-color);
 }
