@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block extrahead %}
+    {{ super() }}<!-- HTML Meta Tags -->
+    <title>Lynara</title>
+    <meta name="description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+
+    <meta property="og:url" content="https://mirumee.github.io/lynara/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lynara">
+    <meta property="og:description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+    <meta property="og:image" content="https://mirumee.github.io/lynara/assets/og_bg.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="mirumee.github.io">
+    <meta property="twitter:url" content="https://mirumee.github.io/lynara/">
+    <meta name="twitter:title" content="Lynara">
+    <meta name="twitter:description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+    <meta name="twitter:image" content="https://mirumee.github.io/lynara/assets/og_bg.jpg">
+{% endblock %}

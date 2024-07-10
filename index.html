@@ -1,0 +1,681 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mirumee.github.io/lynara/">
+      
+      
+      
+        <link rel="next" href="benchmarks/">
+      
+      
+      <link rel="icon" href="assets/logo_white_small.svg">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>Lynara</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+    <!-- HTML Meta Tags -->
+    <title>Lynara</title>
+    <meta name="description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+
+    <meta property="og:url" content="https://mirumee.github.io/lynara/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Lynara">
+    <meta property="og:description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+    <meta property="og:image" content="https://mirumee.github.io/lynara/assets/og_bg.jpg">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="twitter:domain" content="mirumee.github.io">
+    <meta property="twitter:url" content="https://mirumee.github.io/lynara/">
+    <meta name="twitter:title" content="Lynara">
+    <meta name="twitter:description" content="Tool that allows running Python ASGI applications in an AWS Lambda runtime.">
+    <meta name="twitter:image" content="https://mirumee.github.io/lynara/assets/og_bg.jpg">
+
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#introduction" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Lynara" class="md-header__button md-logo" aria-label="Lynara" data-md-component="logo">
+      
+  <img src="assets/logo_black.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Lynara
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Home
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mirumee/lynara" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mirumee/lynara
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Lynara" class="md-nav__button md-logo" aria-label="Lynara" data-md-component="logo">
+      
+  <img src="assets/logo_black.svg" alt="logo">
+
+    </a>
+    Lynara
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mirumee/lynara" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    mirumee/lynara
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rationale
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#others-from-mirumee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Others from Mirumee
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="benchmarks/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Benchmarks
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Benchmarks
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Interfaces
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Interfaces
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interfaces/interfaces/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interfaces
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interfaces/lifespan/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lifespan
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#quickstart" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quickstart
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rationale
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#others-from-mirumee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Others from Mirumee
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<p><svg width="1005" height="380" viewBox="0 0 1005 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="main-logo">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M151.35 62.5267C168.732 52.4911 190.148 52.4911 207.53 62.5267L275.79 101.937C293.172 111.972 303.88 130.519 303.88 150.59V229.41C303.88 249.481 293.172 268.028 275.79 278.063L207.53 317.473C190.148 327.509 168.732 327.509 151.35 317.473L83.09 278.063C65.7078 268.028 55 249.481 55 229.41V150.59C55 130.519 65.7078 111.972 83.09 101.937L151.35 62.5267ZM125.421 108.971H138.926C161.301 108.971 179.44 127.11 179.44 149.485V176.552C179.472 198.901 197.598 217.008 219.954 217.008L233.459 217.011V271.03H219.954C197.579 271.03 179.44 252.891 179.44 230.516V217.011L125.421 217.008V108.971Z" fill="white"/>
+<path d="M430.181 121V228.856C430.181 231.938 430.823 234.185 432.107 235.597C433.391 236.881 435.766 237.523 439.233 237.523H452.137V259.672H430.951C421.193 259.672 413.553 257.746 408.032 253.894C402.639 250.042 399.943 242.723 399.943 231.938V121H430.181Z" fill="white"/>
+<path d="M633.019 202.277C633.019 189.566 627.498 183.21 616.455 183.21C610.934 183.21 606.312 185.136 602.588 188.988C598.864 192.711 597.003 198.168 597.003 205.359V259.672H566.764V159.52H596.232V173.002C599.956 168.123 604.45 164.271 609.714 161.446C614.979 158.621 620.949 157.209 627.626 157.209C638.668 157.209 647.335 160.74 653.627 167.802C660.047 174.735 663.257 185.007 663.257 198.618V259.672H633.019V202.277Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M726.946 259.094C732.082 257.04 736.705 253.701 740.813 249.079V259.672H769.511V187.832C769.511 178.202 765.659 170.691 757.955 165.298C750.379 159.905 739.144 157.209 724.25 157.209C710.511 157.209 699.34 160.226 690.737 166.261C682.135 172.296 677.769 180.963 677.641 192.262H707.686C707.815 188.282 709.355 185.136 712.309 182.825C715.39 180.513 719.499 179.358 724.635 179.358C730.285 179.358 734.265 180.449 736.576 182.632C738.887 184.686 740.043 187.64 740.043 191.492V195.536L712.694 200.159C698.313 202.598 687.977 206.193 681.685 210.944C675.522 215.567 672.44 222.308 672.44 231.167C672.44 240.926 675.779 248.501 682.456 253.894C689.261 259.287 698.185 261.983 709.227 261.983C716.032 261.983 721.939 261.02 726.946 259.094ZM706.916 238.293C704.476 236.239 703.256 233.478 703.256 230.012C703.256 226.545 704.476 223.977 706.916 222.308C709.355 220.638 713.336 219.29 718.857 218.263L740.043 214.026V221.537C740.043 228.086 737.924 233.029 733.687 236.367C729.45 239.577 724.186 241.182 717.894 241.182C713.143 241.182 709.484 240.219 706.916 238.293Z" fill="white"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M920.989 249.079C916.88 253.701 912.258 257.04 907.122 259.094C902.114 261.02 896.208 261.983 889.403 261.983C878.36 261.983 869.437 259.287 862.631 253.894C855.955 248.501 852.616 240.926 852.616 231.167C852.616 222.308 855.698 215.567 861.861 210.944C868.153 206.193 878.489 202.598 892.87 200.159L920.219 195.536V191.492C920.219 187.64 919.063 184.686 916.752 182.632C914.441 180.449 910.46 179.358 904.811 179.358C899.675 179.358 895.566 180.513 892.484 182.825C889.531 185.136 887.99 188.282 887.862 192.262H857.816C857.945 180.963 862.31 172.296 870.913 166.261C879.516 160.226 890.687 157.209 904.426 157.209C919.32 157.209 930.555 159.905 938.131 165.298C945.835 170.691 949.687 178.202 949.687 187.832V259.672H920.989V249.079ZM883.432 230.012C883.432 233.478 884.652 236.239 887.092 238.293C889.66 240.219 893.319 241.182 898.07 241.182C904.361 241.182 909.626 239.577 913.863 236.367C918.1 233.029 920.219 228.086 920.219 221.537V214.026L899.033 218.263C893.512 219.29 889.531 220.638 887.092 222.308C884.652 223.977 883.432 226.545 883.432 230.012Z" fill="white"/>
+<path d="M781.36 159.52H810.828V177.817C816.477 164.849 826.107 158.364 839.718 158.364H847.999V185.906H838.369C829.51 185.906 822.833 188.153 818.339 192.647C813.845 197.013 811.598 204.46 811.598 214.989V259.672H781.36V159.52Z" fill="white"/>
+<path d="M475.013 274.31H458.449V298.192H483.487C493.888 298.192 501.977 295.56 507.755 290.295C513.533 285.031 518.284 277.263 522.007 266.991L560.913 159.52H528.363L507.37 232.708L485.799 159.52H453.249L490.999 261.598L490.806 261.983C489.265 266.991 487.468 270.265 485.413 271.806C483.487 273.475 480.021 274.31 475.013 274.31Z" fill="white"/>
+</svg></p>
+<h1 id="introduction">Introduction</h1>
+<p>Lynara is a tool that allows running Python ASGI applications in an AWS Lambda runtime.</p>
+<p>When writing Lynara, we closely followed what <a href="https://www.uvicorn.org/">Uvicorn</a> does to fulfill its role as an ASGI server. However, instead of running in a long-lived loop serving many requests, Lynara receives an AWS event, passes it to the application, and stops.</p>
+<h2 id="quickstart">Quickstart</h2>
+<p>Install Lynara:</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="poetry" name="__tabbed_1" type="radio" /><input id="pip" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="poetry">Poetry</label><label for="pip">pip</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>poetry add lynara
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip install lynara
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Use Lynara with your ASGI application:</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">app.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">asyncio</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">from</span> <span class="nn">lynara</span> <span class="kn">import</span> <span class="n">Lynara</span><span class="p">,</span> <span class="n">APIGatewayProxyEventV2Interface</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">()</span><span class="c1"># (1)!</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">lynara</span> <span class="o">=</span> <span class="n">Lynara</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>    <span class="k">return</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">run</span><span class="p">(</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>        <span class="n">lynara</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">APIGatewayProxyEventV2Interface</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>The <code>app</code> is loaded once for every cold start.</li>
+</ol>
+<h2 id="rationale">Rationale</h2>
+<p>We wanted to quickly deploy small and scalable Python applications on Lambdas. Our goal was to support small <a href="https://fastapi.tiangolo.com/">FastAPI</a> applications with a few endpoints, but not as small as a single lambda handler. Leveraging <a href="https://www.starlette.io/">Starlette</a> or <a href="https://fastapi.tiangolo.com/">FastAPI</a> in a serverless runtime was an appealing idea. Although there are existing solutions like <a href="https://github.com/jordaneremieff/mangum">Mangum</a> and <a href="https://github.com/awslabs/aws-lambda-web-adapter">aws-lambda-web-adapter</a>, they did not meet our needs.</p>
+<p>Another aspect is being able to jump off a serverless environment as Lambdas are cheaper than Fargates and EC2s only up to a certain point. Here's a neat <a href="https://www.aws-geek.com/?config=eyJsYW1iZGFQYXJhbXMiOnsiYXZnUmVzcG9uc2VUaW1lSW5NcyI6MTAwLCJyZXF1ZXN0cyI6MjAwMCwiaW50ZXJ2YWwiOiJtaW51dGUiLCJsYW1iZGFTaXplIjoxMjgsImZyZWVUaWVyIjpmYWxzZX0sImZhcmdhdGVQYXJhbXMiOnsiZmFyZ2F0ZUNvbmZpZyI6eyJ2Q1BVIjoyLCJtZW1vcnkiOjR9LCJudW1iZXJPZlRhc2tzIjoyLCJhcHBSdW5uZXJDb25maWciOnsiZW5hYmxlZCI6dHJ1ZSwicnBtUGVyVGFzayI6NjAwMH19LCJlYzJQYXJhbXMiOnsiaW5zdGFuY2VUeXBlIjoidDMubWVkaXVtIiwibnVtYmVyT2ZJbnN0YW5jZXMiOjJ9LCJldmVudHNQYXJhbXMiOnsiaW50ZXJ2YWwiOiJob3VyIiwiZXZlbnRzIjo1MDAwMDAwLCJjb25zdW1lcnMiOjEsImF2Z1BheWxvYWRTaXplIjo1MDAwLCJzaGFyZHMiOjd9fQ==">AWS Cost Estimator</a> that might help you understand the costs.</p>
+<p>What started as an evening experiment has resulted in a functional tool. Please star it on GitHub, share feedback, and follow the project if you're interested.</p>
+<h2 id="others-from-mirumee">Others from Mirumee</h2>
+<ul>
+<li><a href="https://github.com/mirumee/smyth">Smyth</a> - A tool improving the Lambda developer experience</li>
+<li><a href="https://ariadnegraphql.org/">Ariadne</a> - Schema-first, Python GraphQL server</li>
+<li><a href="https://github.com/mirumee/ariadne-codegen">Ariadne Codegen</a> - GraphQL Python code generator</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+    
+    <div class="md-copyright__highlight">
+        Copyright &copy; 2024 - Mirumee Software
+    </div>
+    
+    
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+        Material for MkDocs
+    </a>
+    
+    <div class="md-copyright__highlight made-with-love">
+
+        Lynara is crafted with <span class="twemoji heart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                    d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408Z">
+                </path>
+            </svg></span> by <a href="https://mirumee.com"><img class="footer_mirumee_logo"
+                src="./assets/mirumee.png" alt="Mirumee"></a>
+    </div>
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": ["toc.follow", "content.code.copy", "content.code.annotate", "content.tabs.link", "navigation.indexes"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="js/mkdocs-charts-plugin.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/sorts/tablesort.number.min.js"></script>
+      
+        <script src="javascripts/tablesort.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      
+    
+  </body>
+</html>

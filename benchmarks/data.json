@@ -1,0 +1,122 @@
+[
+    {
+        "setup": "Pure Lambda",
+        "proxy": "V1 (API Gateway)",
+        "rps": 2865.1,
+        "lambdaConcurrentExecutions": 324,
+        "firstResponseAfter": {
+            "avg": "0.43",
+            "max": "0.47",
+            "min": "0.39"
+        },
+        "efficiencyPerInvocation": 8.42
+    },
+    {
+        "setup": "Pure Lambda",
+        "proxy": "V2 (Function URL)",
+        "rps": 2884.3,
+        "lambdaConcurrentExecutions": 264,
+        "firstResponseAfter": {
+            "avg": "0.49",
+            "max": "0.56",
+            "min": "0.44"
+        },
+        "efficiencyPerInvocation": 10.92
+    },
+    {
+        "setup": "Lynara + Starlette",
+        "proxy": "V1 (API Gateway)",
+        "rps": 2806.6,
+        "lambdaConcurrentExecutions": 327,
+        "firstResponseAfter": {
+            "avg": "0.66",
+            "max": "0.79",
+            "min": "0.18"
+        },
+        "efficiencyPerInvocation": 7.54
+    },
+    {
+        "setup": "Lynara + Starlette",
+        "proxy": "V2 (Function URL)",
+        "rps": 2845.7,
+        "lambdaConcurrentExecutions": 328,
+        "firstResponseAfter": {
+            "avg": "0.67",
+            "max": "0.81",
+            "min": "0.20"
+        },
+        "efficiencyPerInvocation": 8.67
+    },
+    {
+        "setup": "Lynara + FastAPI",
+        "proxy": "V1 (API Gateway)",
+        "rps": 2769.4,
+        "lambdaConcurrentExecutions": 362,
+        "firstResponseAfter": {
+            "avg": "1.50",
+            "max": "1.69",
+            "min": "1.17"
+        },
+        "efficiencyPerInvocation": 7.65
+    },
+    {
+        "setup": "Lynara + FastAPI",
+        "proxy": "V2 (Function URL)",
+        "rps": 2871.1,
+        "lambdaConcurrentExecutions": 317,
+        "firstResponseAfter": {
+            "avg": "1.54",
+            "max": "1.76",
+            "min": "1.23"
+        },
+        "efficiencyPerInvocation": 9.05
+    },
+    {
+        "setup": "Lynara + Django",
+        "proxy": "V1 (API Gateway)",
+        "rps": 2560.8,
+        "lambdaConcurrentExecutions": 684,
+        "firstResponseAfter": {
+            "avg": "1.34",
+            "max": "1.44",
+            "min": "1.08"
+        },
+        "efficiencyPerInvocation": 3.74
+    },
+    {
+        "setup": "Lynara + Django",
+        "proxy": "V2 (Function URL)",
+        "rps": 2751.0,
+        "lambdaConcurrentExecutions": 638,
+        "firstResponseAfter": {
+            "avg": "1.44",
+            "max": "1.56",
+            "min": "1.33"
+        },
+        "efficiencyPerInvocation": 4.31
+    },
+    {
+        "setup": "Pure Async Lambda",
+        "proxy": "V1 (API Gateway)",
+        "rps": 2752.9,
+        "lambdaConcurrentExecutions": 339,
+        "firstResponseAfter": {
+            "avg": "0.55",
+            "max": "0.74",
+            "min": "0.48"
+        },
+        "efficiencyPerInvocation": 8.12
+    },
+    {
+        "setup": "Pure Async Lambda",
+        "proxy": "V2 (Function URL)",
+        "rps": 2906.7,
+        "lambdaConcurrentExecutions": 307,
+        "firstResponseAfter": {
+            "avg": "0.54",
+            "max": "0.84",
+            "min": "0.25"
+        },
+        "efficiencyPerInvocation": 9.46
+    }
+]
